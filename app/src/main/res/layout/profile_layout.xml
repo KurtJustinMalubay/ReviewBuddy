@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F8FAFC"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/textviewProfileTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="#0F172A"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="32dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="36dp">
+
+        <TextView
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_avatar"
+            android:text="K"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:textColor="#4F46E5"
+            android:gravity="center"
+            android:layout_marginEnd="20dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kurt Justin J. Malubay"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#0F172A"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BS Computer Science 2nd Year"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#64748B"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_card"
+        android:padding="24dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/textviewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username: justinkurt837"
+            android:textColor="#1E293B"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F1F5F9"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textviewFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name: Kurt Justin"
+            android:textColor="#334155"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F1F5F9"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textviewMiddleName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Middle Name: Jolo"
+            android:textColor="#334155"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F1F5F9"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textviewLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name: Malubay"
+            android:textColor="#334155"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F1F5F9"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textviewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email: kurtjustin.malubay@cit.edu"
+            android:textColor="#334155"
+            android:textSize="16sp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/buttonBackDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="Back to Dashboard"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4F46E5"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAllCaps="false"/>
+
+</LinearLayout>

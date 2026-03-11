@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="32dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/imageviewLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textviewTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ReviewBuddy"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome back! Ready to study?"
+        android:textSize="14sp"
+        android:textColor="#6B7280"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="USERNAME"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/edittextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3F4F6"
+        android:hint="firstname.lastname@cit.edu"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="#9CA3AF"
+        android:inputType="text"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/edittextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3F4F6"
+        android:hint="••••••••"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="#9CA3AF"
+        android:inputType="textPassword"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Login"
+        android:textColor="@color/white"
+        android:backgroundTint="#4F46E5"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/textviewRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:background="#00FFFFFF"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Don't have an account? Register"
+        android:textColor="#4F46E5"
+        android:textStyle="bold" />
+
+</LinearLayout>

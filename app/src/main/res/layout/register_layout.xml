@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="32dp"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/textviewRegisterTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#111827"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start building your study decks today."
+        android:textSize="14sp"
+        android:textColor="#6B7280"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="USERNAME"
+        android:textColor="#374151"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/edittextUsername"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3F4F6"
+        android:hint="justinkurt837"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="#9CA3AF"
+        android:inputType="text"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PASSWORD"
+        android:textColor="#374151"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/edittextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3F4F6"
+        android:hint="Create a strong password"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="#9CA3AF"
+        android:inputType="textPassword"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONFIRM PASSWORD"
+        android:textColor="#374151"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp" />
+
+    <EditText
+        android:id="@+id/edittextRePassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3F4F6"
+        android:hint="Repeat your password"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColorHint="#9CA3AF"
+        android:inputType="textPassword"
+        android:layout_marginBottom="32dp" />
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4F46E5"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+</LinearLayout>
