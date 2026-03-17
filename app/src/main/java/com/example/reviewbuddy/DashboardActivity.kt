@@ -10,7 +10,9 @@ class DashboardActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dashboard_layout)
-
+        // val username = getIntent().getStringExtra("Username")
+        // val password = getIntent().getStringExtra("Password")
+        
         val buttonProfile = findViewById<Button>(R.id.buttonProfile)
         val buttonLogout = findViewById<Button>(R.id.buttonLogout)
 
