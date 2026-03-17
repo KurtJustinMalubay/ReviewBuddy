@@ -38,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
 
     private fun executeLogin() {
         val intent = Intent(this, DashboardActivity::class.java)
+        //intent.putExtra("Username", username)
+        //intent.putExtra("Password", password)
         startActivity(intent)
     }
 
