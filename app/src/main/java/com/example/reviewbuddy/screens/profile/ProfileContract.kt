@@ -8,6 +8,7 @@ interface ProfileContract {
             lastName: String,
             username: String,
             email: String,
+            course: String,
             initial: String
         )
         fun navigateToDashboard()

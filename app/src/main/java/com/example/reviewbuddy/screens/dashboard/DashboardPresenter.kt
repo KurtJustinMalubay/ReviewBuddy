@@ -34,7 +34,7 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
 
     override fun confirmAddDeck(title: String) {
         if (title.isNotBlank()) {
-            model.addDeck(title.trim(), 0)
+            model.addDeck(title.trim())
             view.showDeckAddedMessage()
             loadDecks()
         }

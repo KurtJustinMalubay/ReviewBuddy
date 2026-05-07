@@ -1,123 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_light"
-    android:padding="24dp">
+    android:background="@color/bg_light">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="16dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="88dp">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonProfile"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginBottom="8dp">
-                
-                <ImageView
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
-                    android:src="@drawable/ic_avatar_placeholder"
-                    android:layout_marginEnd="8dp" />
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:paddingEnd="8dp">
 
-                <TextView
-                    android:id="@+id/textviewGreeting"
+                <LinearLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_button_circle_ghost"
+                    android:gravity="center"
+                    android:elevation="2dp"
+                    android:outlineProvider="background"
+                    android:layout_marginEnd="12dp">
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@drawable/ic_profile"
+                        android:contentDescription="Profile" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello, User"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/text_secondary" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textviewGreeting"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hello, User"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="View Profile →"
+                        android:textSize="11sp"
+                        android:textColor="@color/primary" />
+                </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textviewDashboardTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dashboard"
-                android:textSize="32sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your study decks"
-                android:textSize="15sp"
-                android:textColor="@color/text_secondary" />
+            <LinearLayout
+                android:id="@+id/buttonLogout"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@drawable/bg_button_circle_danger"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="2dp"
+                android:outlineProvider="background">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_logout"
+                    android:contentDescription="Logout" />
+            </LinearLayout>
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/buttonAddDeck"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
+        <TextView
+            android:id="@+id/textviewDashboardTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dashboard"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/text_primary"
+            android:layout_marginTop="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your study decks"
+            android:textSize="13sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp" />
+
+        <ListView
+            android:id="@+id/listViewDecks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="14dp"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/textviewDashboardEmptyState"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="No decks yet.\nTap ＋ to create one!"
+            android:textSize="17sp"
+            android:textColor="@color/text_secondary"
+            android:gravity="center"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonAddDeck"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/bg_button_circle"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="8dp"
+        android:outlineProvider="background">
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:src="@drawable/ic_add"
-            android:background="@drawable/bg_button_circle"
-            android:scaleType="centerInside"
-            android:elevation="4dp"
             android:contentDescription="Add New Deck" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewDecks"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="16dp"
-        android:scrollbars="none" />
-
-    <TextView
-        android:id="@+id/textviewDashboardEmptyState"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="No decks yet.\nTap + to create one!"
-        android:textSize="18sp"
-        android:textColor="@color/text_secondary"
-        android:gravity="center"
-        android:visibility="gone" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
-
-    <Button
-        android:id="@+id/buttonProfile"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:text="Go to Profile"
-        android:textColor="@color/white"
-        android:background="@drawable/bg_button_primary"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:layout_marginBottom="12dp"
-        android:elevation="2dp" />
-
-    <Button
-        android:id="@+id/buttonLogout"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:text="Logout"
-        android:textColor="@color/danger"
-        android:background="@drawable/bg_button_danger"
-        android:textAllCaps="false"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:elevation="2dp" />
-
-</LinearLayout>
+</FrameLayout>

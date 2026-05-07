@@ -35,7 +35,8 @@
             android:textColor="@color/primary"
             android:gravity="center"
             android:layout_marginEnd="20dp"
-            android:elevation="2dp" />
+            android:elevation="2dp"
+            android:outlineProvider="background" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -53,9 +54,10 @@
                 android:layout_marginBottom="4dp"/>
 
             <TextView
+                android:id="@+id/textviewProfileSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="BS Computer Science 2nd Year"
+                android:text="Student"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_secondary"/>
@@ -69,6 +71,7 @@
         android:background="@drawable/bg_card"
         android:padding="24dp"
         android:elevation="4dp"
+        android:outlineProvider="background"
         android:layout_marginBottom="32dp">
 
         <TextView
@@ -138,6 +141,21 @@
             android:layout_height="wrap_content"
             android:text="Email: kurtjustin.malubay@cit.edu"
             android:textColor="@color/text_secondary"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/border_color"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/textviewCourse"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Course: "
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"/>
     </LinearLayout>
 
@@ -156,6 +174,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:textAllCaps="false"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:outlineProvider="background" />
 
 </LinearLayout>

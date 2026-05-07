@@ -89,7 +89,8 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:outlineProvider="background" />
 
     <Button
         android:id="@+id/textviewRegister"

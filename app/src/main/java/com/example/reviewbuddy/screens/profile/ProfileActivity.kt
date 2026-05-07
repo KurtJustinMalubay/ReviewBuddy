@@ -37,18 +37,21 @@ class ProfileActivity : Activity(), ProfileContract.View {
         lastName: String,
         username: String,
         email: String,
+        course: String,
         initial: String
     ) {
         val middleInitial = if (middleName.isNotBlank()) "${middleName.substring(0, 1)}." else ""
         val fullName = "$firstName $middleInitial $lastName".trim().replace("  ", " ")
 
         findViewById<android.widget.TextView>(R.id.textviewProfileName).text = fullName
+        findViewById<android.widget.TextView>(R.id.textviewProfileSubtitle).text =
+            if (course.isNotBlank()) course else "Student"
         findViewById<android.widget.TextView>(R.id.textviewUsername).text = "Username: $username"
         findViewById<android.widget.TextView>(R.id.textviewFirstName).text = "First Name: $firstName"
         findViewById<android.widget.TextView>(R.id.textviewMiddleName).text = "Middle Name: $middleName"
         findViewById<android.widget.TextView>(R.id.textviewLastName).text = "Last Name: $lastName"
         findViewById<android.widget.TextView>(R.id.textviewEmail).text = "Email: $email"
-        
+        findViewById<android.widget.TextView>(R.id.textviewCourse).text = "Course: $course"
         findViewById<android.widget.TextView>(R.id.textviewProfileInitial).text = initial
     }
 

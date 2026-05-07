@@ -10,44 +10,69 @@ import com.google.gson.reflect.TypeToken
 import java.util.UUID
 
 class DeckRepository {
-    private val prefs: SharedPreferences = ReviewBuddyApp.appContext.getSharedPreferences("reviewbuddy_prefs", Context.MODE_PRIVATE)
+    private val prefs: SharedPreferences =
+        ReviewBuddyApp.appContext.getSharedPreferences("reviewbuddy_prefs", Context.MODE_PRIVATE)
     private val gson = Gson()
     private val decks = mutableListOf<Deck>()
 
-    init {
-        loadFromPrefs()
-        if (decks.isEmpty()) {
-            // Initial mock data if empty
-            val initialDecks = listOf(
-                Deck(UUID.randomUUID().toString(), "Data Structures"),
-                Deck(UUID.randomUUID().toString(), "Mobile Dev"),
-                Deck(UUID.randomUUID().toString(), "Science Technology...")
-            )
-            decks.addAll(initialDecks)
-            saveToPrefs()
+    // Tracks which user's decks are currently loaded in memory
+    private var activeUsername: String = ""
+
+    // -----------------------------------------------------------------
+    // User-scoped key helpers
+    // -----------------------------------------------------------------
+
+    private fun currentUsername(): String =
+        ReviewBuddyApp.userRepository.getLoggedInUser()?.username ?: ""
+
+    private fun prefsKey(username: String): String = "decks_data_$username"
+
+    /**
+     * Call before any read/write operation.
+     * If the logged-in user has changed since last access, flush current
+     * in-memory list and reload from the new user's prefs key.
+     */
+    private fun ensureActiveUser() {
+        val username = currentUsername()
+        if (username != activeUsername) {
+            activeUsername = username
+            loadFromPrefs()
         }
     }
 
+    // -----------------------------------------------------------------
+    // Persistence helpers
+    // -----------------------------------------------------------------
+
     private fun loadFromPrefs() {
-        val json = prefs.getString("decks_data", null)
+        decks.clear()
+        if (activeUsername.isBlank()) return
+
+        val json = prefs.getString(prefsKey(activeUsername), null)
         if (json != null) {
             val type = object : TypeToken<List<Deck>>() {}.type
-            val loadedDecks: List<Deck> = gson.fromJson(json, type)
-            decks.clear()
-            decks.addAll(loadedDecks)
+            val loaded: List<Deck> = gson.fromJson(json, type)
+            decks.addAll(loaded)
         }
+        // No mock seed data — each user starts with a clean slate
     }
 
     private fun saveToPrefs() {
-        val json = gson.toJson(decks)
-        prefs.edit().putString("decks_data", json).apply()
+        if (activeUsername.isBlank()) return
+        prefs.edit().putString(prefsKey(activeUsername), gson.toJson(decks)).apply()
     }
 
+    // -----------------------------------------------------------------
+    // Public API
+    // -----------------------------------------------------------------
+
     fun getDecks(): List<Deck> {
+        ensureActiveUser()
         return decks.toList()
     }
 
-    fun addDeck(title: String, cardCount: Int = 0): Deck {
+    fun addDeck(title: String): Deck {
+        ensureActiveUser()
         val newDeck = Deck(UUID.randomUUID().toString(), title)
         decks.add(newDeck)
         saveToPrefs()
@@ -55,6 +80,7 @@ class DeckRepository {
     }
 
     fun removeDeck(deck: Deck) {
+        ensureActiveUser()
         val iterator = decks.iterator()
         while (iterator.hasNext()) {
             if (iterator.next().id == deck.id) {
@@ -66,10 +92,12 @@ class DeckRepository {
     }
 
     fun getDeckById(deckId: String): Deck? {
+        ensureActiveUser()
         return decks.find { it.id == deckId }
     }
 
     fun addCard(deckId: String, front: String, back: String): Card? {
+        ensureActiveUser()
         val deck = getDeckById(deckId)
         if (deck != null) {
             val card = Card(UUID.randomUUID().toString(), front, back)
@@ -81,6 +109,7 @@ class DeckRepository {
     }
 
     fun editCard(deckId: String, cardId: String, newFront: String, newBack: String) {
+        ensureActiveUser()
         val deck = getDeckById(deckId)
         val card = deck?.cards?.find { it.id == cardId }
         if (card != null) {
@@ -91,6 +120,7 @@ class DeckRepository {
     }
 
     fun deleteCard(deckId: String, cardId: String) {
+        ensureActiveUser()
         val deck = getDeckById(deckId)
         if (deck != null) {
             deck.cards.removeAll { it.id == cardId }

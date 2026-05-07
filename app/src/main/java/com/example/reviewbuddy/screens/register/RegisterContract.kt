@@ -14,6 +14,7 @@ interface RegisterContract {
             middleName: String,
             lastName: String,
             email: String,
+            course: String,
             pass: String,
             passConfirm: String
         )

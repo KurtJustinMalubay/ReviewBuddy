@@ -8,8 +8,8 @@ class DashboardModel {
         return ReviewBuddyApp.deckRepository.getDecks()
     }
 
-    fun addDeck(title: String, cards: Int) {
-        ReviewBuddyApp.deckRepository.addDeck(title, cards)
+    fun addDeck(title: String) {
+        ReviewBuddyApp.deckRepository.addDeck(title)
     }
 
     fun removeDeck(deck: Deck) {

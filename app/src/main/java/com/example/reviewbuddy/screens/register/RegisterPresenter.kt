@@ -11,12 +11,13 @@ class RegisterPresenter(private val view: RegisterContract.View) : RegisterContr
         middleName: String,
         lastName: String,
         email: String,
+        course: String,
         pass: String,
         passConfirm: String
     ) {
         val validation = model.validateRegistration(username, firstName, lastName, email, pass, passConfirm)
         if (validation.first) {
-            val user = User(username, pass, firstName, middleName, lastName, email)
+            val user = User(username, pass, firstName, middleName, lastName, email, course)
             if (model.registerUser(user)) {
                 view.showRegisterSuccess()
                 view.navigateToLogin()

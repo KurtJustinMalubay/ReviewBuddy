@@ -14,6 +14,7 @@ class ProfilePresenter(private val view: ProfileContract.View) : ProfileContract
                 lastName = user.lastName,
                 username = user.username,
                 email = user.email,
+                course = user.course ?: "",   // Gson sets missing fields to null, not the Kotlin default
                 initial = initial
             )
         } else {

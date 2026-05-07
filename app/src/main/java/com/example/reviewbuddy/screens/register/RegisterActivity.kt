@@ -21,6 +21,7 @@ class RegisterActivity : Activity(), RegisterContract.View {
         val edittextFirstName = findViewById<android.widget.EditText>(R.id.edittextFirstName)
         val edittextMiddleName = findViewById<android.widget.EditText>(R.id.edittextMiddleName)
         val edittextLastName = findViewById<android.widget.EditText>(R.id.edittextLastName)
+        val edittextCourse = findViewById<android.widget.EditText>(R.id.edittextCourse)
         val edittextEmail = findViewById<android.widget.EditText>(R.id.edittextEmail)
         val edittextPassword = findViewById<android.widget.EditText>(R.id.edittextPassword)
         val edittextRePassword = findViewById<android.widget.EditText>(R.id.edittextRePassword)
@@ -31,10 +32,11 @@ class RegisterActivity : Activity(), RegisterContract.View {
             val firstName = edittextFirstName.text.toString()
             val middleName = edittextMiddleName.text.toString()
             val lastName = edittextLastName.text.toString()
+            val course = edittextCourse.text.toString()
             val email = edittextEmail.text.toString()
             val pass = edittextPassword.text.toString()
             val pass2 = edittextRePassword.text.toString()
-            presenter.attemptRegister(user, firstName, middleName, lastName, email, pass, pass2)
+            presenter.attemptRegister(user, firstName, middleName, lastName, email, course, pass, pass2)
         }
     }
 

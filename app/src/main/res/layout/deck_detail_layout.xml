@@ -35,15 +35,22 @@
             android:textColor="@color/text_primary"
             android:layout_marginStart="8dp" />
 
-        <ImageButton
+        <LinearLayout
             android:id="@+id/buttonAddCard"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/ic_add"
             android:background="@drawable/bg_button_circle"
-            android:scaleType="centerInside"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
             android:elevation="4dp"
-            android:contentDescription="Add New Card" />
+            android:outlineProvider="background">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_add"
+                android:contentDescription="Add New Card" />
+        </LinearLayout>
     </LinearLayout>
 
     <ListView
@@ -78,6 +85,7 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="18sp"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:outlineProvider="background" />
 
 </LinearLayout>
