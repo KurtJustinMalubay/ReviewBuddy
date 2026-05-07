@@ -24,6 +24,7 @@
         <activity android:name=".screens.dashboard.DashboardActivity" />
         <activity android:name=".screens.profile.ProfileActivity" />
         <activity android:name=".screens.deck.DeckDetailActivity" />
+        <activity android:name=".screens.study.StudyActivity" />
 
     </application>
 

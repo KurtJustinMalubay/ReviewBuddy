@@ -8,7 +8,10 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
     private val model = DashboardModel()
 
     override fun loadDecks() {
-        view.showDecks(model.getDecks())
+        view.showUserGreeting("Hello, ${model.getUserFirstName()}")
+        val decks = model.getDecks()
+        view.showDecks(decks)
+        view.toggleEmptyState(decks.isEmpty())
     }
 
     override fun onDeckClicked(deck: Deck) {
@@ -16,6 +19,10 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
     }
 
     override fun onDeckLongClicked(deck: Deck) {
+        view.showDeckOptionsDialog(deck)
+    }
+
+    override fun confirmDeleteDeck(deck: Deck) {
         model.removeDeck(deck)
         view.showDeckRemovedMessage()
         loadDecks()

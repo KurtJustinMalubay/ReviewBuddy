@@ -12,6 +12,7 @@ interface DeckDetailContract {
         fun showEditCardDialog(card: Card)
         fun showMessage(message: String)
         fun toggleEmptyState(isEmpty: Boolean)
+        fun launchStudyMode(deckId: String)
     }
 
     interface Presenter {

@@ -2,7 +2,14 @@ package com.example.reviewbuddy.screens.profile
 
 interface ProfileContract {
     interface View {
-        fun showProfileName(name: String)
+        fun showProfileDetails(
+            firstName: String,
+            middleName: String,
+            lastName: String,
+            username: String,
+            email: String,
+            initial: String
+        )
         fun navigateToDashboard()
     }
 

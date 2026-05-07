@@ -15,4 +15,8 @@ class DashboardModel {
     fun removeDeck(deck: Deck) {
         ReviewBuddyApp.deckRepository.removeDeck(deck)
     }
+
+    fun getUserFirstName(): String {
+        return ReviewBuddyApp.userRepository.getLoggedInUser()?.firstName ?: "User"
+    }
 }

@@ -8,6 +8,14 @@ interface RegisterContract {
     }
 
     interface Presenter {
-        fun attemptRegister(username: String, pass: String, passConfirm: String)
+        fun attemptRegister(
+            username: String,
+            firstName: String,
+            middleName: String,
+            lastName: String,
+            email: String,
+            pass: String,
+            passConfirm: String
+        )
     }
 }

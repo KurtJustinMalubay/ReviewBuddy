@@ -11,13 +11,17 @@ interface DashboardContract {
         fun navigateToLogin()
         fun showDeckDetails(deck: Deck)
         fun showAddDeckDialog()
+        fun showDeckOptionsDialog(deck: Deck)
+        fun showUserGreeting(name: String)
+        fun toggleEmptyState(isEmpty: Boolean)
     }
 
     interface Presenter {
         fun loadDecks()
         fun onDeckClicked(deck: Deck)
         fun onDeckLongClicked(deck: Deck)
-        fun onAddDeckClicked() // changed to trigger dialog
+        fun confirmDeleteDeck(deck: Deck)
+        fun onAddDeckClicked()
         fun confirmAddDeck(title: String)
         fun onProfileClicked()
         fun onLogoutClicked()

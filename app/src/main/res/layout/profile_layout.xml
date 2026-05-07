@@ -25,6 +25,7 @@
         android:layout_marginBottom="36dp">
 
         <TextView
+            android:id="@+id/textviewProfileInitial"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:background="@drawable/bg_card"

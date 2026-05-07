@@ -11,11 +11,14 @@ class ReviewBuddyApp : Application() {
             private set
         lateinit var deckRepository: DeckRepository
             private set
+        lateinit var userRepository: com.example.reviewbuddy.data.repositories.UserRepository
+            private set
     }
 
     override fun onCreate() {
         super.onCreate()
         appContext = applicationContext
         deckRepository = DeckRepository()
+        userRepository = com.example.reviewbuddy.data.repositories.UserRepository()
     }
 }

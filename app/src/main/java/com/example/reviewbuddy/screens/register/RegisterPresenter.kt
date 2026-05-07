@@ -1,14 +1,30 @@
 package com.example.reviewbuddy.screens.register
 
+import com.example.reviewbuddy.data.models.User
+
 class RegisterPresenter(private val view: RegisterContract.View) : RegisterContract.Presenter {
     private val model = RegisterModel()
 
-    override fun attemptRegister(username: String, pass: String, passConfirm: String) {
-        if (model.validateRegistration(username, pass, passConfirm)) {
-            view.showRegisterSuccess()
-            view.navigateToLogin()
+    override fun attemptRegister(
+        username: String,
+        firstName: String,
+        middleName: String,
+        lastName: String,
+        email: String,
+        pass: String,
+        passConfirm: String
+    ) {
+        val validation = model.validateRegistration(username, firstName, lastName, email, pass, passConfirm)
+        if (validation.first) {
+            val user = User(username, pass, firstName, middleName, lastName, email)
+            if (model.registerUser(user)) {
+                view.showRegisterSuccess()
+                view.navigateToLogin()
+            } else {
+                view.showRegisterError("Failed to register. Please try again.")
+            }
         } else {
-            view.showRegisterError("Invalid input or passwords do not match")
+            view.showRegisterError(validation.second)
         }
     }
 }

@@ -157,4 +157,10 @@ class DeckDetailActivity : Activity(), DeckDetailContract.View {
 
         dialog.show()
     }
+
+    override fun launchStudyMode(deckId: String) {
+        val intent = android.content.Intent(this, com.example.reviewbuddy.screens.study.StudyActivity::class.java)
+        intent.putExtra("DECK_ID", deckId)
+        startActivity(intent)
+    }
 }

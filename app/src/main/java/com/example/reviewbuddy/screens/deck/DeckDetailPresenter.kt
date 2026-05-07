@@ -69,6 +69,12 @@ class DeckDetailPresenter(private val view: DeckDetailContract.View) : DeckDetai
     }
 
     override fun onStudyClicked() {
-        view.showFeatureNotImplemented()
+        val deckId = currentDeckId ?: return
+        val cards = model.getCards(deckId)
+        if (cards.isEmpty()) {
+            view.showMessage("Add some cards first to study")
+        } else {
+            view.launchStudyMode(deckId)
+        }
     }
 }

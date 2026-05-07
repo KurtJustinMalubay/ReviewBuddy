@@ -24,9 +24,9 @@ class DashboardActivity : Activity(), DashboardContract.View {
         presenter = DashboardPresenter(this)
 
         listViewDecks = findViewById(R.id.listViewDecks)
-        val buttonProfile = findViewById<Button>(R.id.buttonProfile)
-        val buttonLogout = findViewById<Button>(R.id.buttonLogout)
-        val buttonAddDeck = findViewById<android.widget.ImageButton>(R.id.buttonAddDeck)
+        val buttonProfile = findViewById<android.view.View>(R.id.buttonProfile)
+        val buttonLogout = findViewById<android.view.View>(R.id.buttonLogout)
+        val buttonAddDeck = findViewById<android.view.View>(R.id.buttonAddDeck)
 
         listViewDecks.setOnItemClickListener { _, _, position, _ ->
             val deck = deckAdapter.getItem(position)
@@ -55,12 +55,27 @@ class DashboardActivity : Activity(), DashboardContract.View {
             presenter.onLogoutClicked()
         }
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         presenter.loadDecks()
     }
 
     override fun showDecks(decks: List<Deck>) {
         deckAdapter = DeckAdapter(this, decks)
         listViewDecks.adapter = deckAdapter
+    }
+
+    override fun showUserGreeting(name: String) {
+        val greetingText = findViewById<android.widget.TextView>(R.id.textviewGreeting)
+        greetingText?.text = name
+    }
+
+    override fun toggleEmptyState(isEmpty: Boolean) {
+        val emptyStateText = findViewById<android.widget.TextView>(R.id.textviewDashboardEmptyState)
+        emptyStateText?.visibility = if (isEmpty) android.view.View.VISIBLE else android.view.View.GONE
+        listViewDecks.visibility = if (isEmpty) android.view.View.GONE else android.view.View.VISIBLE
     }
 
     override fun showDeckRemovedMessage() {
@@ -113,5 +128,16 @@ class DashboardActivity : Activity(), DashboardContract.View {
         }
 
         dialog.show()
+    }
+
+    override fun showDeckOptionsDialog(deck: Deck) {
+        android.app.AlertDialog.Builder(this)
+            .setTitle("Deck Options")
+            .setMessage("What would you like to do with '${deck.title}'?")
+            .setPositiveButton("Delete") { _, _ ->
+                presenter.confirmDeleteDeck(deck)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 }

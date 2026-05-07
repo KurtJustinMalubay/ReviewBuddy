@@ -18,15 +18,23 @@ class RegisterActivity : Activity(), RegisterContract.View {
         presenter = RegisterPresenter(this)
 
         val edittextUsername = findViewById<android.widget.EditText>(R.id.edittextUsername)
+        val edittextFirstName = findViewById<android.widget.EditText>(R.id.edittextFirstName)
+        val edittextMiddleName = findViewById<android.widget.EditText>(R.id.edittextMiddleName)
+        val edittextLastName = findViewById<android.widget.EditText>(R.id.edittextLastName)
+        val edittextEmail = findViewById<android.widget.EditText>(R.id.edittextEmail)
         val edittextPassword = findViewById<android.widget.EditText>(R.id.edittextPassword)
         val edittextRePassword = findViewById<android.widget.EditText>(R.id.edittextRePassword)
         val buttonSubmit = findViewById<Button>(R.id.buttonSubmit)
 
         buttonSubmit.setOnClickListener {
             val user = edittextUsername.text.toString()
+            val firstName = edittextFirstName.text.toString()
+            val middleName = edittextMiddleName.text.toString()
+            val lastName = edittextLastName.text.toString()
+            val email = edittextEmail.text.toString()
             val pass = edittextPassword.text.toString()
             val pass2 = edittextRePassword.text.toString()
-            presenter.attemptRegister(user, pass, pass2)
+            presenter.attemptRegister(user, firstName, middleName, lastName, email, pass, pass2)
         }
     }
 
