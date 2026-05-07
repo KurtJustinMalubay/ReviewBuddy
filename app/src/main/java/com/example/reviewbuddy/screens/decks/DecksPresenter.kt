@@ -1,17 +1,15 @@
-package com.example.reviewbuddy.screens.dashboard
+package com.example.reviewbuddy.screens.decks
 
 import com.example.reviewbuddy.data.models.Deck
 
-class DashboardPresenter(private val view: DashboardContract.View) : DashboardContract.Presenter {
+class DecksPresenter(private val view: DecksContract.View) : DecksContract.Presenter {
 
-    private val model = DashboardModel()
+    private val model = DecksModel()
     private var allDecks: List<Deck> = emptyList()
 
     override fun loadDecks() {
-        view.showUserGreeting("Hello, ${model.getUserFirstName()}")
         allDecks = model.getDecks()
-        val displayed = allDecks.take(4)
-        view.showDecks(displayed)
+        view.showDecks(allDecks)
         view.toggleEmptyState(allDecks.isEmpty())
     }
 
@@ -21,9 +19,20 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
         } else {
             allDecks.filter { it.title.contains(query, ignoreCase = true) }
         }
-        val displayed = filtered.take(4)
-        view.showDecks(displayed)
+        view.showDecks(filtered)
         view.toggleEmptyState(filtered.isEmpty())
+    }
+
+    override fun onAddDeckClicked() {
+        view.showAddDeckDialog()
+    }
+
+    override fun confirmAddDeck(title: String) {
+        if (title.isNotBlank()) {
+            model.addDeck(title.trim())
+            view.showMessage("New deck added")
+            loadDecks()
+        }
     }
 
     override fun onDeckClicked(deck: Deck) {
@@ -36,31 +45,15 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
 
     override fun confirmDeleteDeck(deck: Deck) {
         model.removeDeck(deck)
-        view.showDeckRemovedMessage()
+        view.showMessage("Deck removed")
         loadDecks()
     }
 
-    override fun onAddDeckClicked() {
-        view.showAddDeckDialog()
-    }
-
-    override fun confirmAddDeck(title: String) {
-        if (title.isNotBlank()) {
-            model.addDeck(title.trim())
-            view.showDeckAddedMessage()
-            loadDecks()
-        }
+    override fun onHomeClicked() {
+        view.navigateToHome()
     }
 
     override fun onProfileClicked() {
         view.navigateToProfile()
-    }
-
-    override fun onDecksClicked() {
-        view.navigateToDecks()
-    }
-
-    override fun onLogoutClicked() {
-        view.navigateToLogin()
     }
 }

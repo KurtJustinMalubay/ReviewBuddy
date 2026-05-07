@@ -10,66 +10,83 @@
         android:id="@+id/textviewCardDialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Flashcard"
-        android:textSize="20sp"
+        android:text="Add New Flashcard"
+        android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="@color/text_primary"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Front"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/edittextCardFront"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:background="@drawable/bg_input_rounded"
-        android:hint="Front (e.g. Mitochondria)"
+        android:hint="Type question here..."
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:textColor="@color/text_primary"
         android:textColorHint="@color/text_secondary"
         android:inputType="textCapSentences"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/edittextCardBack"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:gravity="top|start"
         android:background="@drawable/bg_input_rounded"
-        android:hint="Back (e.g. Powerhouse of the cell)"
+        android:hint="Type answer here..."
         android:padding="20dp"
         android:textColor="@color/text_primary"
         android:textColorHint="@color/text_secondary"
         android:inputType="textMultiLine|textCapSentences"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="32dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="end">
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/buttonCancelCard"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
             android:text="Cancel"
             android:textColor="@color/text_secondary"
-            android:background="@color/transparent"
+            android:background="@drawable/bg_button_ghost"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="12dp" />
 
         <Button
             android:id="@+id/buttonSaveCard"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Save"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:text="Add Card"
             android:textColor="@color/white"
             android:background="@drawable/bg_button_primary"
             android:textAllCaps="false"
-            android:textStyle="bold"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp" />
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

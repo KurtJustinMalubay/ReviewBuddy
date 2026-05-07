@@ -7,18 +7,14 @@ class ProfilePresenter(private val view: ProfileContract.View) : ProfileContract
     override fun loadProfile() {
         val user = model.getUserProfile()
         if (user != null) {
-            val initial = if (user.firstName.isNotBlank()) user.firstName.substring(0, 1).uppercase() else "U"
             view.showProfileDetails(
                 firstName = user.firstName,
-                middleName = user.middleName,
                 lastName = user.lastName,
-                username = user.username,
-                email = user.email,
-                course = user.course ?: "",   // Gson sets missing fields to null, not the Kotlin default
-                initial = initial
+                course = user.course ?: "Student",
+                deckCount = model.getTotalDecks(),
+                cardCount = model.getTotalCards()
             )
         } else {
-            // Fallback or handle missing user (e.g. redirect to login)
             view.navigateToDashboard()
         }
     }
@@ -27,7 +23,23 @@ class ProfilePresenter(private val view: ProfileContract.View) : ProfileContract
         view.navigateToDashboard()
     }
 
-    override fun onBackClicked() {
+    override fun onLogoutClicked() {
+        view.navigateToLogin()
+    }
+
+    override fun onSettingsClicked() {
+        view.showComingSoonMessage("Account Settings")
+    }
+
+    override fun onNotificationsClicked() {
+        view.showComingSoonMessage("Notifications")
+    }
+
+    override fun onHomeClicked() {
         view.navigateToDashboard()
+    }
+
+    override fun onDecksClicked() {
+        view.navigateToDecks()
     }
 }

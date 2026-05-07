@@ -10,7 +10,6 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.Button
 import android.widget.FrameLayout
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -46,7 +45,7 @@ class StudyActivity : Activity(), StudyContract.View {
         layoutCompletion = findViewById(R.id.layoutCompletion)
         textviewCompletionMessage = findViewById(R.id.textviewCompletionMessage)
 
-        val buttonCloseStudy = findViewById<ImageButton>(R.id.buttonCloseStudy)
+        val buttonCloseStudy = findViewById<LinearLayout>(R.id.buttonCloseStudy)
         val buttonNeedsReview = findViewById<Button>(R.id.buttonNeedsReview)
         val buttonGotIt = findViewById<Button>(R.id.buttonGotIt)
         val buttonFinishStudy = findViewById<Button>(R.id.buttonFinishStudy)
@@ -108,7 +107,6 @@ class StudyActivity : Activity(), StudyContract.View {
         textviewProgress.text = "$current / $total"
         val progress = if (total > 0) ((current - 1).toFloat() / total * 100).toInt() else 0
         
-        // animate progress
         val progressAnimator = ObjectAnimator.ofInt(progressBarStudy, "progress", progressBarStudy.progress, progress)
         progressAnimator.duration = 300
         progressAnimator.start()

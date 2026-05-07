@@ -45,6 +45,8 @@ class LoginActivity : Activity(), LoginContract.View {
     override fun navigateToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
     }
 
     override fun navigateToRegister() {

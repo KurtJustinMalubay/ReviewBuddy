@@ -3,9 +3,10 @@ package com.example.reviewbuddy.screens.profile
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
+import android.widget.Toast
 import com.example.reviewbuddy.R
-import com.example.reviewbuddy.screens.dashboard.DashboardActivity
+import com.example.reviewbuddy.screens.decks.DecksActivity
+import com.example.reviewbuddy.screens.login.LoginActivity
 
 class ProfileActivity : Activity(), ProfileContract.View {
 
@@ -17,47 +18,62 @@ class ProfileActivity : Activity(), ProfileContract.View {
 
         presenter = ProfilePresenter(this)
 
-        val buttonBackDashboard = findViewById<Button>(R.id.buttonBackDashboard)
-        //val buttonBack = findViewById<Button>(R.id.buttonBack)
+        val menuAccountSettings = findViewById<android.view.View>(R.id.menuAccountSettings)
+        val menuNotifications = findViewById<android.view.View>(R.id.menuNotifications)
+        val menuLogout = findViewById<android.view.View>(R.id.menuLogout)
+
+        val navHome = findViewById<android.view.View>(R.id.navHome)
+        val navDecks = findViewById<android.view.View>(R.id.navDecks)
+        val navProfile = findViewById<android.view.View>(R.id.navProfile)
 
         presenter.loadProfile()
 
-        buttonBackDashboard.setOnClickListener {
-            presenter.onBackToDashboardClicked()
-        }
+        menuAccountSettings.setOnClickListener { presenter.onSettingsClicked() }
+        menuNotifications.setOnClickListener { presenter.onNotificationsClicked() }
+        menuLogout.setOnClickListener { presenter.onLogoutClicked() }
 
-//        buttonBack.setOnClickListener {
-//            presenter.onBackClicked()
-//        }
+        // Pressing Home pops Profile off the stack — reveals Dashboard underneath
+        navHome.setOnClickListener { finish() }
+
+        // Pressing Decks: pop Profile, then open Decks
+        navDecks.setOnClickListener { presenter.onDecksClicked() }
+
+        // Already on Profile
+        navProfile.setOnClickListener { /* Already here */ }
     }
 
     override fun showProfileDetails(
         firstName: String,
-        middleName: String,
         lastName: String,
-        username: String,
-        email: String,
         course: String,
-        initial: String
+        deckCount: Int,
+        cardCount: Int
     ) {
-        val middleInitial = if (middleName.isNotBlank()) "${middleName.substring(0, 1)}." else ""
-        val fullName = "$firstName $middleInitial $lastName".trim().replace("  ", " ")
-
-        findViewById<android.widget.TextView>(R.id.textviewProfileName).text = fullName
-        findViewById<android.widget.TextView>(R.id.textviewProfileSubtitle).text =
-            if (course.isNotBlank()) course else "Student"
-        findViewById<android.widget.TextView>(R.id.textviewUsername).text = "Username: $username"
-        findViewById<android.widget.TextView>(R.id.textviewFirstName).text = "First Name: $firstName"
-        findViewById<android.widget.TextView>(R.id.textviewMiddleName).text = "Middle Name: $middleName"
-        findViewById<android.widget.TextView>(R.id.textviewLastName).text = "Last Name: $lastName"
-        findViewById<android.widget.TextView>(R.id.textviewEmail).text = "Email: $email"
-        findViewById<android.widget.TextView>(R.id.textviewCourse).text = "Course: $course"
-        findViewById<android.widget.TextView>(R.id.textviewProfileInitial).text = initial
+        findViewById<android.widget.TextView>(R.id.textviewProfileName).text = firstName
+        findViewById<android.widget.TextView>(R.id.textviewProfileSubtitle).text = course
+        findViewById<android.widget.TextView>(R.id.textviewTotalDecks).text = deckCount.toString()
+        findViewById<android.widget.TextView>(R.id.textviewCardsMastered).text = cardCount.toString()
     }
 
+    // finish() pops Profile — Dashboard is already in the back stack below
     override fun navigateToDashboard() {
-        val intent = Intent(this, DashboardActivity::class.java)
-        startActivity(intent)
         finish()
+    }
+
+    override fun navigateToDecks() {
+        val intent = Intent(this, DecksActivity::class.java)
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+        finish()
+    }
+
+    override fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finishAffinity()
+    }
+
+    override fun showComingSoonMessage(feature: String) {
+        Toast.makeText(this, "$feature coming soon!", Toast.LENGTH_SHORT).show()
     }
 }

@@ -1,85 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/bg_light"
-    android:padding="24dp">
+    android:background="@color/bg_light">
 
+    <!-- Header Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="16dp">
+        android:padding="24dp">
 
-        <Button
+        <ImageView
             android:id="@+id/buttonBack"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:text="←"
-            android:textColor="@color/text_primary"
-            android:textSize="20sp"
-            android:background="@color/transparent"
-            android:textStyle="bold" />
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_chevron_right"
+            android:rotation="180"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:tint="@color/text_primary" />
 
         <TextView
             android:id="@+id/textviewDeckTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Deck Title"
+            android:text="Data Structures"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/text_primary"
-            android:layout_marginStart="8dp" />
+            android:gravity="center" />
 
         <LinearLayout
             android:id="@+id/buttonAddCard"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/bg_button_circle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_button_circle_ghost"
             android:gravity="center"
             android:clickable="true"
-            android:focusable="true"
-            android:elevation="4dp"
-            android:outlineProvider="background">
+            android:focusable="true">
             <ImageView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_add"
-                android:contentDescription="Add New Card" />
+                android:tint="@color/primary" />
         </LinearLayout>
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listViewCards"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="16dp"
-        android:scrollbars="none"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:id="@+id/textviewEmptyState"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="No Flashcards Yet.\nTap + to add some!"
-        android:textSize="18sp"
-        android:textColor="@color/text_secondary"
-        android:gravity="center"
-        android:visibility="gone"
-        android:layout_marginBottom="16dp" />
-
+    <!-- Study Now Button -->
     <Button
         android:id="@+id/buttonStudy"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:text="Study Now"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:text="▶  Study Now"
         android:textColor="@color/white"
         android:background="@drawable/bg_button_primary"
         android:textAllCaps="false"
@@ -87,5 +68,29 @@
         android:textSize="18sp"
         android:elevation="4dp"
         android:outlineProvider="background" />
+
+    <!-- Cards List -->
+    <ListView
+        android:id="@+id/listViewCards"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="16dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:clipToPadding="false"
+        android:scrollbars="none" />
+
+    <TextView
+        android:id="@+id/textviewEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="No Flashcards Yet.&#10;Tap + to add some!"
+        android:textSize="18sp"
+        android:textColor="@color/text_secondary"
+        android:gravity="center"
+        android:visibility="gone" />
 
 </LinearLayout>

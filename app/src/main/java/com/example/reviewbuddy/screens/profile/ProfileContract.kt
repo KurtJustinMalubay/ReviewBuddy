@@ -4,19 +4,24 @@ interface ProfileContract {
     interface View {
         fun showProfileDetails(
             firstName: String,
-            middleName: String,
             lastName: String,
-            username: String,
-            email: String,
             course: String,
-            initial: String
+            deckCount: Int,
+            cardCount: Int
         )
         fun navigateToDashboard()
+        fun navigateToDecks()
+        fun navigateToLogin()
+        fun showComingSoonMessage(feature: String)
     }
 
     interface Presenter {
         fun loadProfile()
         fun onBackToDashboardClicked()
-        fun onBackClicked()
+        fun onLogoutClicked()
+        fun onSettingsClicked()
+        fun onNotificationsClicked()
+        fun onHomeClicked()
+        fun onDecksClicked()
     }
 }

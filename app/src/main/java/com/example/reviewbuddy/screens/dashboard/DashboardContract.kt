@@ -8,6 +8,7 @@ interface DashboardContract {
         fun showDeckRemovedMessage()
         fun showDeckAddedMessage()
         fun navigateToProfile()
+        fun navigateToDecks()
         fun navigateToLogin()
         fun showDeckDetails(deck: Deck)
         fun showAddDeckDialog()
@@ -18,12 +19,14 @@ interface DashboardContract {
 
     interface Presenter {
         fun loadDecks()
+        fun onSearchQuery(query: String)
         fun onDeckClicked(deck: Deck)
         fun onDeckLongClicked(deck: Deck)
         fun confirmDeleteDeck(deck: Deck)
         fun onAddDeckClicked()
         fun confirmAddDeck(title: String)
         fun onProfileClicked()
+        fun onDecksClicked()
         fun onLogoutClicked()
     }
 }

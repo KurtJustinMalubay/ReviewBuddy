@@ -27,8 +27,8 @@ class DeckDetailActivity : Activity(), DeckDetailContract.View {
         listViewCards = findViewById(R.id.listViewCards)
         textviewEmptyState = findViewById(R.id.textviewEmptyState)
         
-        val buttonBack = findViewById<Button>(R.id.buttonBack)
-        val buttonAddCard = findViewById<View>(R.id.buttonAddCard)
+        val buttonBack = findViewById<android.view.View>(R.id.buttonBack)
+        val buttonAddCard = findViewById<android.view.View>(R.id.buttonAddCard)
         val buttonStudy = findViewById<Button>(R.id.buttonStudy)
 
         val deckId = intent.getStringExtra("DECK_ID")
