@@ -21,6 +21,14 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello, Kurt"
+                android:textSize="16sp"
+                android:textColor="@color/text_secondary"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
                 android:id="@+id/textviewDashboardTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,15 +45,15 @@
                 android:textColor="@color/text_secondary" />
         </LinearLayout>
 
-        <Button
+        <ImageButton
             android:id="@+id/buttonAddDeck"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="+ New"
-            android:background="@drawable/bg_button_primary"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:elevation="2dp" />
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_add"
+            android:background="@drawable/bg_button_circle"
+            android:scaleType="centerInside"
+            android:elevation="4dp"
+            android:contentDescription="Add New Deck" />
     </LinearLayout>
 
     <ListView

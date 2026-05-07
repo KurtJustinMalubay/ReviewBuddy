@@ -18,7 +18,7 @@ class ProfileActivity : Activity(), ProfileContract.View {
         presenter = ProfilePresenter(this)
 
         val buttonBackDashboard = findViewById<Button>(R.id.buttonBackDashboard)
-        val buttonBack = findViewById<Button>(R.id.buttonBack)
+        //val buttonBack = findViewById<Button>(R.id.buttonBack)
 
         presenter.loadProfile()
 
@@ -26,9 +26,9 @@ class ProfileActivity : Activity(), ProfileContract.View {
             presenter.onBackToDashboardClicked()
         }
 
-        buttonBack.setOnClickListener {
-            presenter.onBackClicked()
-        }
+//        buttonBack.setOnClickListener {
+//            presenter.onBackClicked()
+//        }
     }
 
     override fun showProfileName(name: String) {

@@ -26,7 +26,7 @@ class DashboardActivity : Activity(), DashboardContract.View {
         listViewDecks = findViewById(R.id.listViewDecks)
         val buttonProfile = findViewById<Button>(R.id.buttonProfile)
         val buttonLogout = findViewById<Button>(R.id.buttonLogout)
-        val buttonAddDeck = findViewById<Button>(R.id.buttonAddDeck)
+        val buttonAddDeck = findViewById<android.widget.ImageButton>(R.id.buttonAddDeck)
 
         listViewDecks.setOnItemClickListener { _, _, position, _ ->
             val deck = deckAdapter.getItem(position)
