@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.dashboard
+package com.example.reviewbuddy.screens.dashboard
 
 import android.app.Activity
 import android.content.Intent
@@ -8,14 +8,14 @@ import android.widget.ListView
 import android.widget.Toast
 import com.example.reviewbuddy.R
 import com.example.reviewbuddy.data.models.Deck
-import com.example.reviewbuddy.login.LoginActivity
-import com.example.reviewbuddy.profile.ProfileActivity
+import com.example.reviewbuddy.screens.login.LoginActivity
+import com.example.reviewbuddy.screens.profile.ProfileActivity
 
 class DashboardActivity : Activity(), DashboardContract.View {
 
-    private lateinit val presenter: DashboardContract.Presenter
-    private lateinit val listViewDecks: ListView
-    private lateinit val deckAdapter: DeckAdapter
+    private lateinit var presenter: DashboardContract.Presenter
+    private lateinit var listViewDecks: ListView
+    private lateinit var deckAdapter: DeckAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

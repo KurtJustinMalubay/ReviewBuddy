@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.profile
+package com.example.reviewbuddy.screens.profile
 
 class ProfilePresenter(private val view: ProfileContract.View) : ProfileContract.Presenter {
     override fun onBackToDashboardClicked() {

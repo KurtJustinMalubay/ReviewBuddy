@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.login
+package com.example.reviewbuddy.screens.login
 
 import android.app.Activity
 import android.content.Intent
@@ -8,12 +8,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.reviewbuddy.R
-import com.example.reviewbuddy.dashboard.DashboardActivity
-import com.example.reviewbuddy.register.RegisterActivity
+import com.example.reviewbuddy.screens.dashboard.DashboardActivity
+import com.example.reviewbuddy.screens.register.RegisterActivity
 
 class LoginActivity : Activity(), LoginContract.View {
 
-    private lateinit val presenter: LoginContract.Presenter
+    private lateinit var presenter: LoginContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,15 +1,15 @@
-package com.example.reviewbuddy.register
+package com.example.reviewbuddy.screens.register
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import com.example.reviewbuddy.R
-import com.example.reviewbuddy.login.LoginActivity
+import com.example.reviewbuddy.screens.login.LoginActivity
 
 class RegisterActivity : Activity(), RegisterContract.View {
 
-    private lateinit val presenter: RegisterContract.Presenter
+    private lateinit var presenter: RegisterContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

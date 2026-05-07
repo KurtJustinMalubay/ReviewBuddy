@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.register
+package com.example.reviewbuddy.screens.register
 
 interface RegisterContract {
     interface View {

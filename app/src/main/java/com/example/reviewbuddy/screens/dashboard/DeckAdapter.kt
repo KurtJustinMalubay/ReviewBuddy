@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.dashboard
+package com.example.reviewbuddy.screens.dashboard
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.reviewbuddy.login
+package com.example.reviewbuddy.screens.login
 
 interface LoginContract {
     interface View {
