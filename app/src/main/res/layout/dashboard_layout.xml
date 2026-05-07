@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+ New"
-            android:backgroundTint="#4F46E5"
+            android:background="#4F46E5"
             android:textColor="@color/white" />
     </LinearLayout>
 
@@ -83,7 +83,7 @@
         android:layout_height="64dp"
         android:text="Go to Profile"
         android:textColor="@color/white"
-        android:backgroundTint="#4F46E5"
+        android:background="#4F46E5"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="16sp"
@@ -95,7 +95,7 @@
         android:layout_height="64dp"
         android:text="Logout"
         android:textColor="#EF4444"
-        android:backgroundTint="#FEE2E2"
+        android:background="#FEE2E2"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="16sp" />

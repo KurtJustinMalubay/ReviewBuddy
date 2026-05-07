@@ -83,7 +83,7 @@
         android:layout_height="56dp"
         android:text="Login"
         android:textColor="@color/white"
-        android:backgroundTint="#4F46E5"
+        android:background="#4F46E5"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="16sp" />
