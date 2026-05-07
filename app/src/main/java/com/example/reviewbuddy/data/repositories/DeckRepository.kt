@@ -3,7 +3,7 @@ package com.example.reviewbuddy.data.repositories
 import com.example.reviewbuddy.data.models.Deck
 import java.util.UUID
 
-object DeckRepository {
+class DeckRepository {
     private val decks = mutableListOf<Deck>()
 
     init {

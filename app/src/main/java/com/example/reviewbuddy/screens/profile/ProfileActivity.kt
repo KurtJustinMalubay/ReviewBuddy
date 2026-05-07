@@ -18,10 +18,21 @@ class ProfileActivity : Activity(), ProfileContract.View {
         presenter = ProfilePresenter(this)
 
         val buttonBackDashboard = findViewById<Button>(R.id.buttonBackDashboard)
+        val buttonBack = findViewById<Button>(R.id.buttonBack)
+
+        presenter.loadProfile()
 
         buttonBackDashboard.setOnClickListener {
             presenter.onBackToDashboardClicked()
         }
+
+        buttonBack.setOnClickListener {
+            presenter.onBackClicked()
+        }
+    }
+
+    override fun showProfileName(name: String) {
+        findViewById<android.widget.TextView>(R.id.textviewProfileName).text = name
     }
 
     override fun navigateToDashboard() {

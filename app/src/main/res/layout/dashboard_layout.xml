@@ -3,65 +3,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F8FAFC"
+    android:background="@color/bg_light"
     android:padding="24dp">
-
-    <TextView
-        android:id="@+id/textviewWelcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Good morning,"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
-
-    <TextView
-        android:id="@+id/textviewFirstName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kurt Justin 👋"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/edittextSearch"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_card"
-        android:hint="Search your decks..."
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textColorHint="#9CA3AF"
-        android:inputType="text"
-        android:layout_marginBottom="24dp"
-        android:elevation="2dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="24dp"
+        android:layout_marginTop="16dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="My Study Decks"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textviewDashboardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dashboard"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your study decks"
+                android:textSize="15sp"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/buttonAddDeck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+ New"
-            android:background="#4F46E5"
-            android:textColor="@color/white" />
+            android:background="@drawable/bg_button_primary"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:elevation="2dp" />
     </LinearLayout>
 
     <ListView
@@ -70,12 +54,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:divider="@android:color/transparent"
-        android:dividerHeight="8dp" />
+        android:dividerHeight="16dp"
+        android:scrollbars="none" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="16dp" />
 
     <Button
         android:id="@+id/buttonProfile"
@@ -83,21 +67,23 @@
         android:layout_height="64dp"
         android:text="Go to Profile"
         android:textColor="@color/white"
-        android:background="#4F46E5"
+        android:background="@drawable/bg_button_primary"
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="16sp"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="12dp"
+        android:elevation="2dp" />
 
     <Button
         android:id="@+id/buttonLogout"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:text="Logout"
-        android:textColor="#EF4444"
-        android:background="#FEE2E2"
+        android:textColor="@color/danger"
+        android:background="@drawable/bg_button_danger"
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:elevation="2dp" />
 
 </LinearLayout>

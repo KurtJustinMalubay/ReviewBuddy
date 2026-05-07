@@ -5,8 +5,10 @@ import com.example.reviewbuddy.data.repositories.DeckRepository
 
 class DashboardPresenter(private val view: DashboardContract.View) : DashboardContract.Presenter {
 
+    private val model = DashboardModel()
+
     override fun loadDecks() {
-        view.showDecks(DeckRepository.getDecks())
+        view.showDecks(model.getDecks())
     }
 
     override fun onDeckClicked(deck: Deck) {
@@ -14,15 +16,21 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
     }
 
     override fun onDeckLongClicked(deck: Deck) {
-        DeckRepository.removeDeck(deck)
+        model.removeDeck(deck)
         view.showDeckRemovedMessage()
         loadDecks()
     }
 
     override fun onAddDeckClicked() {
-        DeckRepository.addDeck("New Custom Deck", 0)
-        view.showDeckAddedMessage()
-        loadDecks()
+        view.showAddDeckDialog()
+    }
+
+    override fun confirmAddDeck(title: String) {
+        if (title.isNotBlank()) {
+            model.addDeck(title.trim(), 0)
+            view.showDeckAddedMessage()
+            loadDecks()
+        }
     }
 
     override fun onProfileClicked() {

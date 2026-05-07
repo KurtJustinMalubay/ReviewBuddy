@@ -17,11 +17,25 @@ class RegisterActivity : Activity(), RegisterContract.View {
 
         presenter = RegisterPresenter(this)
 
+        val edittextUsername = findViewById<android.widget.EditText>(R.id.edittextUsername)
+        val edittextPassword = findViewById<android.widget.EditText>(R.id.edittextPassword)
+        val edittextRePassword = findViewById<android.widget.EditText>(R.id.edittextRePassword)
         val buttonSubmit = findViewById<Button>(R.id.buttonSubmit)
 
         buttonSubmit.setOnClickListener {
-            presenter.onSubmitClicked()
+            val user = edittextUsername.text.toString()
+            val pass = edittextPassword.text.toString()
+            val pass2 = edittextRePassword.text.toString()
+            presenter.attemptRegister(user, pass, pass2)
         }
+    }
+
+    override fun showRegisterSuccess() {
+        android.widget.Toast.makeText(this, "Registration Successful!", android.widget.Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showRegisterError(message: String) {
+        android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
     }
 
     override fun navigateToLogin() {

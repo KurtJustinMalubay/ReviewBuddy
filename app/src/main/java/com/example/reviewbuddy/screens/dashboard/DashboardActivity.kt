@@ -83,6 +83,35 @@ class DashboardActivity : Activity(), DashboardContract.View {
     }
 
     override fun showDeckDetails(deck: Deck) {
-        Toast.makeText(this, "Clicked on: ${deck.title}", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, com.example.reviewbuddy.screens.deck.DeckDetailActivity::class.java)
+        intent.putExtra("DECK_ID", deck.id)
+        intent.putExtra("DECK_TITLE", deck.title)
+        startActivity(intent)
+    }
+
+    override fun showAddDeckDialog() {
+        val dialog = android.app.Dialog(this)
+        dialog.setContentView(R.layout.dialog_add_deck)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.setLayout(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val edittextDeckTitle = dialog.findViewById<android.widget.EditText>(R.id.edittextDeckTitle)
+        val buttonCancel = dialog.findViewById<Button>(R.id.buttonCancel)
+        val buttonCreate = dialog.findViewById<Button>(R.id.buttonCreate)
+
+        buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        buttonCreate.setOnClickListener {
+            val title = edittextDeckTitle.text.toString()
+            presenter.confirmAddDeck(title)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

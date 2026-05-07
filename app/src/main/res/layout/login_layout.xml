@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/bg_light"
     android:padding="32dp"
     android:gravity="center_vertical">
 
@@ -21,72 +21,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ReviewBuddy"
-        android:textSize="28sp"
+        android:textSize="32sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/text_primary"
         android:gravity="center" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Welcome back! Ready to study?"
-        android:textSize="14sp"
-        android:textColor="#6B7280"
+        android:textSize="15sp"
+        android:textColor="@color/text_secondary"
         android:gravity="center"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="40dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:text="USERNAME"
-        android:textColor="@color/black"
+        android:textColor="@color/text_secondary"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/edittextUsername"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#F3F4F6"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_input_rounded"
         android:hint="firstname.lastname@cit.edu"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textColorHint="#9CA3AF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
         android:inputType="text"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PASSWORD"
-        android:textColor="@color/black"
+        android:textColor="@color/text_secondary"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:layout_marginBottom="4dp" />
+        android:layout_marginBottom="8dp" />
 
     <EditText
         android:id="@+id/edittextPassword"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#F3F4F6"
+        android:layout_height="56dp"
+        android:background="@drawable/bg_input_rounded"
         android:hint="••••••••"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        android:textColorHint="#9CA3AF"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_secondary"
         android:inputType="textPassword"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="40dp" />
 
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="64dp"
         android:text="Login"
         android:textColor="@color/white"
-        android:background="#4F46E5"
+        android:background="@drawable/bg_button_primary"
         android:textAllCaps="false"
         android:textStyle="bold"
-        android:textSize="16sp" />
+        android:textSize="18sp"
+        android:elevation="4dp" />
 
     <Button
         android:id="@+id/textviewRegister"
@@ -94,11 +97,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="32dp"
-        android:background="#00FFFFFF"
+        android:background="@color/transparent"
         android:gravity="center"
         android:padding="8dp"
         android:text="Don't have an account? Register"
-        android:textColor="#4F46E5"
+        android:textColor="@color/primary"
         android:textStyle="bold" />
 
 </LinearLayout>
