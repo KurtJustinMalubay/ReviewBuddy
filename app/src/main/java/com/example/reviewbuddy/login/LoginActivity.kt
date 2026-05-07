@@ -1,18 +1,25 @@
-package com.example.reviewbuddy
+package com.example.reviewbuddy.login
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import com.example.reviewbuddy.R
+import com.example.reviewbuddy.dashboard.DashboardActivity
+import com.example.reviewbuddy.register.RegisterActivity
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : Activity(), LoginContract.View {
+
+    private lateinit val presenter: LoginContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_layout)
+
+        presenter = LoginPresenter(this)
 
         val buttonLogin = findViewById<Button>(R.id.buttonLogin)
         val textviewRegister = findViewById<TextView>(R.id.textviewRegister)
@@ -23,27 +30,24 @@ class LoginActivity : AppCompatActivity() {
         buttonLogin.setOnClickListener {
             val username = edittextUsername.text.toString().trim()
             val password = edittextPassword.text.toString().trim()
-
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please enter both username and password", Toast.LENGTH_SHORT).show()
-            } else {
-                executeLogin()
-            }
+            presenter.attemptLogin(username, password)
         }
 
         textviewRegister.setOnClickListener {
-            openRegisterScreen()
+            presenter.onRegisterClicked()
         }
     }
 
-    private fun executeLogin() {
+    override fun showLoginError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun navigateToDashboard() {
         val intent = Intent(this, DashboardActivity::class.java)
-        //intent.putExtra("Username", username)
-        //intent.putExtra("Password", password)
         startActivity(intent)
     }
 
-    private fun openRegisterScreen() {
+    override fun navigateToRegister() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }

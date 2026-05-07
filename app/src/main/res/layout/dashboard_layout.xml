@@ -39,134 +39,38 @@
         android:layout_marginBottom="24dp"
         android:elevation="2dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="My Study Decks"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="16dp"
-        android:baselineAligned="false">
+        android:gravity="center_vertical"
+        android:layout_marginBottom="16dp">
 
-        <LinearLayout
+        <TextView
             android:layout_width="0dp"
-            android:layout_height="120dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="16dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="2dp"
-            android:gravity="bottom">
+            android:text="My Study Decks"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Structures"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="45 Cards"
-                android:textColor="#6B7280"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="16dp"
-            android:layout_marginStart="8dp"
-            android:elevation="2dp"
-            android:gravity="bottom">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mobile Dev"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="32 Cards"
-                android:textColor="#6B7280"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
+        <Button
+            android:id="@+id/buttonAddDeck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+ New"
+            android:backgroundTint="#4F46E5"
+            android:textColor="@color/white" />
     </LinearLayout>
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/listViewDecks"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:padding="16dp"
-            android:layout_marginEnd="8dp"
-            android:elevation="2dp"
-            android:gravity="bottom">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Science Technology..."
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="18 Cards"
-                android:textColor="#6B7280"
-                android:textSize="12sp"
-                android:layout_marginTop="4dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="120dp"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:background="@drawable/bg_card"
-            android:backgroundTint="#E0E7FF"
-            android:padding="16dp"
-            android:layout_marginStart="8dp"
-            android:elevation="2dp"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ New Deck"
-                android:textColor="#4F46E5"
-                android:textStyle="bold"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp" />
 
     <View
         android:layout_width="match_parent"
