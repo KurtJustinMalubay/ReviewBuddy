@@ -1,26 +1,43 @@
 package com.example.reviewbuddy.screens.decks
 
 import com.example.reviewbuddy.data.models.Deck
+import com.example.reviewbuddy.app.ReviewBuddyApp
 
 class DecksPresenter(private val view: DecksContract.View) : DecksContract.Presenter {
 
     private val model = DecksModel()
     private var allDecks: List<Deck> = emptyList()
+    private var activeFolder: String? = null
+    private var currentQuery: String = ""
 
     override fun loadDecks() {
         allDecks = model.getDecks()
-        view.showDecks(allDecks)
-        view.toggleEmptyState(allDecks.isEmpty())
+        
+        // Extract unique, sorted list of non-blank folders
+        val folders = allDecks.mapNotNull { it.folder }
+            .filter { it.isNotBlank() }
+            .distinct()
+            .sorted()
+
+        view.showFolderTabs(folders, activeFolder)
+
+        // Filter and sort decks
+        val filtered = allDecks.filter { deck ->
+            val matchesFolder = if (activeFolder == null) true else deck.folder == activeFolder
+            val matchesQuery = if (currentQuery.isBlank()) true else deck.title.contains(currentQuery, ignoreCase = true)
+            matchesFolder && matchesQuery
+        }
+
+        // Sort decks: Pinned first, then sorted by Title alphabetically
+        val sorted = filtered.sortedWith(compareByDescending<Deck> { it.isPinned }.thenBy { it.title.lowercase() })
+
+        view.showDecks(sorted)
+        view.toggleEmptyState(sorted.isEmpty())
     }
 
     override fun onSearchQuery(query: String) {
-        val filtered = if (query.isBlank()) {
-            allDecks
-        } else {
-            allDecks.filter { it.title.contains(query, ignoreCase = true) }
-        }
-        view.showDecks(filtered)
-        view.toggleEmptyState(filtered.isEmpty())
+        currentQuery = query
+        loadDecks()
     }
 
     override fun onAddDeckClicked() {
@@ -29,13 +46,18 @@ class DecksPresenter(private val view: DecksContract.View) : DecksContract.Prese
 
     override fun confirmAddDeck(title: String) {
         if (title.isNotBlank()) {
-            model.addDeck(title.trim())
+            val newDeck = model.addDeck(title.trim())
+            // Automatically assign to current folder filter if on a folder tab!
+            if (!activeFolder.isNullOrBlank()) {
+                ReviewBuddyApp.deckRepository.updateDeckFolder(newDeck.id, activeFolder)
+            }
             view.showMessage("New deck added")
             loadDecks()
         }
     }
 
     override fun onDeckClicked(deck: Deck) {
+        ReviewBuddyApp.deckRepository.updateDeckLastAccessed(deck.id)
         view.showDeckDetails(deck)
     }
 
@@ -43,9 +65,28 @@ class DecksPresenter(private val view: DecksContract.View) : DecksContract.Prese
         view.showDeckOptionsDialog(deck)
     }
 
-    override fun confirmDeleteDeck(deck: Deck) {
-        model.removeDeck(deck)
-        view.showMessage("Deck removed")
+    override fun togglePinDeck(deck: Deck) {
+        ReviewBuddyApp.deckRepository.updateDeckPinStatus(deck.id, !deck.isPinned)
+        loadDecks()
+    }
+
+    override fun deleteDecks(deckIds: Set<String>) {
+        ReviewBuddyApp.deckRepository.removeDecks(deckIds)
+        view.showMessage("${deckIds.size} decks deleted")
+        loadDecks()
+    }
+
+    override fun moveDecksToFolder(deckIds: Set<String>, folder: String?) {
+        val sanitizedFolder = if (folder.isNullOrBlank()) null else folder.trim()
+        deckIds.forEach { deckId ->
+            ReviewBuddyApp.deckRepository.updateDeckFolder(deckId, sanitizedFolder)
+        }
+        view.showMessage("Moved ${deckIds.size} decks to ${sanitizedFolder ?: "All"}")
+        loadDecks()
+    }
+
+    override fun onFolderSelected(folder: String?) {
+        activeFolder = folder
         loadDecks()
     }
 

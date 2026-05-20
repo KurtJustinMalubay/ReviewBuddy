@@ -9,8 +9,20 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
 
     override fun loadDecks() {
         view.showUserGreeting("Hello, ${model.getUserFirstName()}")
+        
         allDecks = model.getDecks()
-        val displayed = allDecks.take(4)
+        
+        // Sort decks: Pinned first, then Recents (lastAccessed > 0 and not pinned, descending), then the rest
+        val pinned = allDecks.filter { it.isPinned }
+        val recents = allDecks.filter { it.lastAccessed > 0L && !it.isPinned }
+            .sortedByDescending { it.lastAccessed }
+        val rest = allDecks.filter { !it.isPinned && it.lastAccessed == 0L }
+            .sortedBy { it.title }
+        
+        val sortedList = pinned + recents + rest
+        
+        view.showDashboardStats(model.getTotalDecks(), model.getTotalCards())
+        val displayed = sortedList.take(4)
         view.showDecks(displayed)
         view.toggleEmptyState(allDecks.isEmpty())
     }
@@ -27,6 +39,7 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
     }
 
     override fun onDeckClicked(deck: Deck) {
+        com.example.reviewbuddy.app.ReviewBuddyApp.deckRepository.updateDeckLastAccessed(deck.id)
         view.showDeckDetails(deck)
     }
 
@@ -34,9 +47,13 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
         view.showDeckOptionsDialog(deck)
     }
 
-    override fun confirmDeleteDeck(deck: Deck) {
-        model.removeDeck(deck)
-        view.showDeckRemovedMessage()
+    override fun togglePinDeck(deck: Deck) {
+        com.example.reviewbuddy.app.ReviewBuddyApp.deckRepository.updateDeckPinStatus(deck.id, !deck.isPinned)
+        loadDecks()
+    }
+
+    override fun removeFromRecents(deck: Deck) {
+        com.example.reviewbuddy.app.ReviewBuddyApp.deckRepository.clearDeckLastAccessed(deck.id)
         loadDecks()
     }
 

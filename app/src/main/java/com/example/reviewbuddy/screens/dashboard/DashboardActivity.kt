@@ -136,12 +136,55 @@ class DashboardActivity : Activity(), DashboardContract.View {
         dialog.show()
     }
 
+    override fun showDashboardStats(deckCount: Int, cardCount: Int) {
+        findViewById<android.widget.TextView>(R.id.textviewDashboardDecks)?.text = deckCount.toString()
+        findViewById<android.widget.TextView>(R.id.textviewDashboardCards)?.text = cardCount.toString()
+    }
+
     override fun showDeckOptionsDialog(deck: Deck) {
-        android.app.AlertDialog.Builder(this)
-            .setTitle("Deck Options")
-            .setMessage("What would you like to do with '${deck.title}'?")
-            .setPositiveButton("Delete") { _, _ -> presenter.confirmDeleteDeck(deck) }
-            .setNegativeButton("Cancel", null)
-            .show()
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_deck_options)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.window?.setLayout(
+            android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+            android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        val dialogTitle = dialog.findViewById<android.widget.TextView>(R.id.dialogTitle)
+        val dialogSubtitle = dialog.findViewById<android.widget.TextView>(R.id.dialogSubtitle)
+        val textPinLabel = dialog.findViewById<android.widget.TextView>(R.id.textPinLabel)
+        val rowPin = dialog.findViewById<android.view.View>(R.id.rowPin)
+        val rowActionSecondary = dialog.findViewById<android.view.View>(R.id.rowActionSecondary)
+        val textSecondaryLabel = dialog.findViewById<android.widget.TextView>(R.id.textSecondaryLabel)
+        val rowDelete = dialog.findViewById<android.view.View>(R.id.rowDelete)
+        val rowMultiSelect = dialog.findViewById<android.view.View>(R.id.rowMultiSelect)
+        val buttonCancel = dialog.findViewById<android.widget.Button>(R.id.buttonCancel)
+
+        dialogTitle.text = deck.title
+        dialogSubtitle.text = "Manage options for this deck"
+
+        // Set Pin / Unpin state
+        textPinLabel.text = if (deck.isPinned) "Unpin Deck" else "Pin Deck"
+        rowPin.setOnClickListener {
+            presenter.togglePinDeck(deck)
+            dialog.dismiss()
+        }
+
+        // Dashboard only: "Remove from Recents"
+        textSecondaryLabel.text = "Remove from Recents"
+        rowActionSecondary.setOnClickListener {
+            presenter.removeFromRecents(deck)
+            dialog.dismiss()
+        }
+
+        // Hide "Delete Permanently" and "Multi-Select" rows on dashboard
+        rowDelete.visibility = android.view.View.GONE
+        rowMultiSelect?.visibility = android.view.View.GONE
+
+        buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }

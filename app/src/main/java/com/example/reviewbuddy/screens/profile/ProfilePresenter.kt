@@ -7,12 +7,17 @@ class ProfilePresenter(private val view: ProfileContract.View) : ProfileContract
     override fun loadProfile() {
         val user = model.getUserProfile()
         if (user != null) {
+            val fullName = listOf(user.firstName, user.middleName, user.lastName)
+                .filter { it.isNotBlank() }
+                .joinToString(" ")
             view.showProfileDetails(
+                username = user.username,
+                email = user.email,
+                fullName = fullName,
                 firstName = user.firstName,
+                middleName = user.middleName,
                 lastName = user.lastName,
-                course = user.course ?: "Student",
-                deckCount = model.getTotalDecks(),
-                cardCount = model.getTotalCards()
+                course = if (user.course.isNotBlank()) user.course else "Student"
             )
         } else {
             view.navigateToDashboard()

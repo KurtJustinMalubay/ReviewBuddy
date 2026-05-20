@@ -28,7 +28,7 @@ class DeckRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: DeckViewHolder, position: Int) {
         val deck = decks[position]
-        holder.titleText.text = deck.title
+        holder.titleText.text = if (deck.isPinned) "📌 ${deck.title}" else deck.title
         holder.countText.text = "${deck.cardCount} Cards"
         
         holder.itemView.setOnClickListener { onDeckClick(deck) }

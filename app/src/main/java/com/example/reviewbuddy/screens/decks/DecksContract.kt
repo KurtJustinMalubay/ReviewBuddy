@@ -12,6 +12,9 @@ interface DecksContract {
         fun showMessage(message: String)
         fun navigateToHome()
         fun navigateToProfile()
+        fun showFolderTabs(folders: List<String>, activeFolder: String?)
+        fun showMultiSelectActionBar(visible: Boolean, count: Int)
+        fun showFolderOrganizeDialog(deckIds: Set<String>, folders: List<String>)
     }
 
     interface Presenter {
@@ -21,7 +24,10 @@ interface DecksContract {
         fun confirmAddDeck(title: String)
         fun onDeckClicked(deck: Deck)
         fun onDeckLongClicked(deck: Deck)
-        fun confirmDeleteDeck(deck: Deck)
+        fun togglePinDeck(deck: Deck)
+        fun deleteDecks(deckIds: Set<String>)
+        fun moveDecksToFolder(deckIds: Set<String>, folder: String?)
+        fun onFolderSelected(folder: String?)
         fun onHomeClicked()
         fun onProfileClicked()
     }

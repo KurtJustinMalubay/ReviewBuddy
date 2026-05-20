@@ -51,6 +51,12 @@ class RegisterActivity : Activity(), RegisterContract.View {
     override fun navigateToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+        overridePendingTransition(0, 0)
         finish()
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
     }
 }

@@ -162,5 +162,11 @@ class DeckDetailActivity : Activity(), DeckDetailContract.View {
         val intent = android.content.Intent(this, com.example.reviewbuddy.screens.study.StudyActivity::class.java)
         intent.putExtra("DECK_ID", deckId)
         startActivity(intent)
+        overridePendingTransition(0, 0)
+    }
+
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(0, 0)
     }
 }

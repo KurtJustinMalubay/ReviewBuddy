@@ -19,4 +19,12 @@ class DashboardModel {
     fun getUserFirstName(): String {
         return ReviewBuddyApp.userRepository.getLoggedInUser()?.firstName ?: "User"
     }
+
+    fun getTotalDecks(): Int {
+        return ReviewBuddyApp.deckRepository.getDecks().size
+    }
+
+    fun getTotalCards(): Int {
+        return ReviewBuddyApp.deckRepository.getDecks().sumOf { it.cards.size }
+    }
 }
