@@ -16,6 +16,7 @@ interface DashboardContract {
         fun showUserGreeting(name: String)
         fun showDashboardStats(deckCount: Int, cardCount: Int)
         fun toggleEmptyState(isEmpty: Boolean)
+        fun closeDialog()
     }
 
     interface Presenter {

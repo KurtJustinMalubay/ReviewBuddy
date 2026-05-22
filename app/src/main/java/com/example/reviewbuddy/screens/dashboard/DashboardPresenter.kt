@@ -10,21 +10,23 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
     override fun loadDecks() {
         view.showUserGreeting("Hello, ${model.getUserFirstName()}")
         
+        // Force complete refresh from repository by reloading from SharedPreferences
+        com.example.reviewbuddy.app.ReviewBuddyApp.deckRepository.reloadDecks()
         allDecks = model.getDecks()
         
-        // Sort decks: Pinned first, then Recents (lastAccessed > 0 and not pinned, descending), then the rest
+        // Sort decks: Pinned first, then Recents (lastAccessed > 0 and not pinned, descending)
+        // NOTE: We do NOT display "rest" (lastAccessed == 0) on dashboard - only pinned + recent
         val pinned = allDecks.filter { it.isPinned }
         val recents = allDecks.filter { it.lastAccessed > 0L && !it.isPinned }
             .sortedByDescending { it.lastAccessed }
-        val rest = allDecks.filter { !it.isPinned && it.lastAccessed == 0L }
-            .sortedBy { it.title }
         
-        val sortedList = pinned + recents + rest
+        val sortedList = pinned + recents  // Only pinned + recent, no "rest"
         
         view.showDashboardStats(model.getTotalDecks(), model.getTotalCards())
         val displayed = sortedList.take(4)
+        
         view.showDecks(displayed)
-        view.toggleEmptyState(allDecks.isEmpty())
+        view.toggleEmptyState(displayed.isEmpty())
     }
 
     override fun onSearchQuery(query: String) {
@@ -33,7 +35,14 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
         } else {
             allDecks.filter { it.title.contains(query, ignoreCase = true) }
         }
-        val displayed = filtered.take(4)
+        
+        // Apply same sorting to filtered results: pinned + recent only
+        val pinned = filtered.filter { it.isPinned }
+        val recents = filtered.filter { it.lastAccessed > 0L && !it.isPinned }
+            .sortedByDescending { it.lastAccessed }
+        
+        val sorted = pinned + recents  // Only pinned + recent
+        val displayed = sorted.take(4)
         view.showDecks(displayed)
         view.toggleEmptyState(filtered.isEmpty())
     }
@@ -54,7 +63,12 @@ class DashboardPresenter(private val view: DashboardContract.View) : DashboardCo
 
     override fun removeFromRecents(deck: Deck) {
         com.example.reviewbuddy.app.ReviewBuddyApp.deckRepository.clearDeckLastAccessed(deck.id)
-        loadDecks()
+        view.showDeckRemovedMessage()
+        
+        // Post delay to ensure UI has time to settle before reloading
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            loadDecks()
+        }, 100)
     }
 
     override fun onAddDeckClicked() {

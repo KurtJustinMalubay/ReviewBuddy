@@ -82,6 +82,10 @@ class DashboardActivity : Activity(), DashboardContract.View {
         recyclerViewDecks.visibility = if (isEmpty) android.view.View.GONE else android.view.View.VISIBLE
     }
 
+    override fun closeDialog() {
+        // Will be called to close any open dialogs
+    }
+
     override fun showDeckRemovedMessage() {
         Toast.makeText(this, "Deck removed", Toast.LENGTH_SHORT).show()
     }

@@ -71,6 +71,15 @@ class DeckRepository {
     }
 
     /**
+     * Forces a complete reload of decks from SharedPreferences for the current user.
+     * Use this after making changes to ensure in-memory cache is synced with disk.
+     */
+    fun reloadDecks() {
+        if (activeUsername.isBlank()) return
+        loadFromPrefs()
+    }
+
+    /**
      * Creates and adds a new empty Deck to the repository.
      */
     fun addDeck(title: String): Deck {
@@ -178,6 +187,10 @@ class DeckRepository {
         if (deck != null) {
             deck.lastAccessed = 0L
             saveToPrefs()
+            
+            // Force a complete reload to ensure data is fresh
+            decks.clear()
+            loadFromPrefs()
         }
     }
 
